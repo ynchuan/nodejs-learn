@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/ynchuan/nodejs-learn#readme",
   "devDependencies": {
+    "adm-zip": "^0.4.7",
     "mysql": "^2.10.2"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "formidable": "^1.0.17"
   }
 }
