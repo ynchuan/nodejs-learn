@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/ynchuan/nodejs-learn#readme",
   "devDependencies": {
-    "mysql": "^2.10.2"
+    "mysql": "^2.10.2",
+    "through2": "^2.0.1"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
   }
 }
