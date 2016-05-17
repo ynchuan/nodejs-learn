@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>警务千度</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+</head>
+<body>
+<div class="demo"></div>
+<script>
+    var sendAjax= (function() {
+        var getXHR = (function() {
+            var xhr;
+            if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            }else{
+                xhr = new ActiveObject("Microsoft.XMLHTTP");
+            }
+            if("withCredentials" in xhr){
+
+            }else if(typeof XDomainRequest != "undefined"){
+                xhr = new XDomainRequest();
+            }
+            return xhr;
+        });
+        return function(url,opts){ //url为目标地址
+            var xhr = getXHR(),
+                    data;
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState===4||xhr.status===200){
+                    opts.callback(xhr.responseText);
+                }
+            }
+            xhr.open("GET",url,true);  //写入参数
+            xhr.setRequestHeader('Content-Type','text/plain');
+            xhr.send();  //将参数json字符化
+        }
+    })();
+    //调用执行
+    sendAjax('http://localhost:8081/getDate',{
+        callback:function(data){
+            console.log(data);
+        },
+        data:{
+            name:'JIMMY',
+            age:18
+        }
+    })
+</script>
+</body>
+</html>

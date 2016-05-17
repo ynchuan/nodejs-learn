@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>警务千度</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+</head>
+<body>
+<div class="demo"></div>
+<script>
+var source= new EventSource("http://localhost:8080/getDate");
+    source.onmessage=function(e){
+        console.log(e.data);
+        console.log("msg");
+    };
+    source.addEventListener('myevent', function(e){
+        console.log(e.data);
+        console.log("myevent");
+    }, false);
+    source.onopen=function(e){
+        console.log(e);
+    };
+    source.onerror = function(e) { //当连接发生error时触发
+        console.log(e);
+    };
+</script>
+</body>
+</html>
