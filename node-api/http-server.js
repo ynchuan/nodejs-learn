@@ -19,13 +19,13 @@ var serv = http.createServer(function (req, res) {
         return;
     }else if(pathname=="\\upload"){
         //req.on("data",function(a){
-        //    console.log(a.toString());//获取表单数据
+        //    console.log(a.toString());
         //});
-        var form = new formidable.IncomingForm();   //创建上传表单
-        form.encoding = 'utf-8';		//设置编辑
-        form.uploadDir = "../static-page/20160513-sd-v1.13/upload";	 //设置上传目录
-        form.keepExtensions = true;	 //保留后缀
-        form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
+        var form = new formidable.IncomingForm();
+        form.encoding = 'utf-8';
+        form.uploadDir = "../static-page/20160513-sd-v1.13/upload";
+        form.keepExtensions = true;
+        form.maxFieldsSize = 2 * 1024 * 1024;
 
         form.parse(req, function(err, fields, files) {
             res.writeHeader(200, {

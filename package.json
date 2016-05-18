@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/ynchuan/nodejs-learn#readme",
   "devDependencies": {
-
+    "gulp": "^3.9.1"
   },
   "dependencies": {
     "express": "^4.13.4",
