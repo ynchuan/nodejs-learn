@@ -52,25 +52,25 @@ var serv = http.createServer(function (req, res) {
             //    "Content-Type": mine[ext] || "text/plain"
             //});
 
-            //fs.stat(realPath, function (err, stat) {
-            //    var lastModified = stat.mtime.toUTCString();
-            //    var size=stat.size;
-            //    if (req.headers["if-modified-since"] && lastModified == req.headers["if-modified-since"]) {
-            //        res.writeHead(304, "Not Modified");
-            //        res.end();
-            //    } else {
-            //        var expires = new Date();
-            //        expires.setTime(expires.getTime() + 20 * 1000);
-            //        //res.setHeader("Expires", expires.toUTCString());
-            //        //res.setHeader("Cache-Control", "max-age=20000");
-            //        //res.setHeader("Last-Modified", lastModified);
-            //        res.setHeader("content-length", size);
-            //        //res.setHeader('Accept-Ranges', 'bytes');
-            //        res.writeHeader(200, {
-            //            'Content-Type': mine[ext] || "text/plain",
-            //            'Content-Encoding': 'gzip'
-            //        });
-                    fs.createReadStream(realPath).pipe(res);
+            fs.stat(realPath, function (err, stat) {
+                var lastModified = stat.mtime.toUTCString();
+                var size=stat.size;
+                if (req.headers["if-modified-since"] && lastModified == req.headers["if-modified-since"]) {
+                    res.writeHead(304, "Not Modified");
+                    res.end();
+                } else {
+                    var expires = new Date();
+                    expires.setTime(expires.getTime() + 20 * 1000);
+                    //res.setHeader("Expires", expires.toUTCString());
+                    //res.setHeader("Cache-Control", "max-age=20000");
+                    //res.setHeader("Last-Modified", lastModified);
+                    res.setHeader("content-length", size);
+                    //res.setHeader('Accept-Ranges', 'bytes');
+                    res.writeHeader(200, {
+                        'Content-Type': mine[ext] || "text/plain",
+                        'Content-Encoding': 'gzip'
+                    });
+                    fs.createReadStream(realPath).pipe(zlib.createGzip()).pipe(res);
                     //fs.readFile(realPath, function (err, file) {
                     //    if (err) {
                     //        res.writeHeader(500, {
@@ -91,9 +91,9 @@ var serv = http.createServer(function (req, res) {
                     //    }
                     //});
                 }
-        //    });
-        //
-        //}
+            });
+
+        }
     });
 
 }).listen(80).on("request", function (req, res) {
