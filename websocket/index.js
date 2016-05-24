@@ -13,6 +13,7 @@ var server=http.createServer(function(req,res){
 }).listen(8080);
 var socket=io.listen(server);
 socket.on("connection",function(client){
+    console.log("websocket conn");
     client.on("message",function(event){
         console.log("recieve  msg:"+event);
     });
