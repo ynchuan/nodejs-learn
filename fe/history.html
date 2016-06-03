@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>history test</title>
+</head>
+<body>
+<a href="#fs">fs</a><br>
+<a href="#cd">cd</a><br>
+<a href="./name.html" onclick='stop(event)' id="ids">name</a>
+<script>
+    window.onhashchange = function(e){
+        alert(location.href);
+        e.preventDefault();
+    }
+    window.onunload = function(e){
+        e.preventDefault();
+    }
+    function stop(e){
+    }
+</script>
+</body>
+</html>
