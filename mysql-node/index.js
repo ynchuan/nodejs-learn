@@ -4,14 +4,16 @@
 var mysql = require("mysql");
 var con = mysql.createConnection({
     host: "localhost",
-    user: "node",
-    password: "node",
+    user: "sakila",
+    password: "sakila",
     database: "sakila",
     port: 3306
 });
 con.connect();
 
-con.query("select * from store",function(er,rows,fields){
-    console.log(rows[1].last_update);
-    console.log(fields[3]);
-});
+module.exports=function(sql,cb){
+    con.query(sql,function(er,rows,fields){
+        cb&&cb(JSON.stringify(rows));
+    });
+    //con.end();  //何时关闭连接？为了保证后续继续能使用，不关闭？
+}

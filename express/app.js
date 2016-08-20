@@ -1,12 +1,17 @@
 var express = require("express");
 var url = require("url");
 var app = express();
+var DBhelper=require("../mysql-node/index");
 app.use(express.static("../static-page/20160513-sd-v1.13"));//托管静态文件
 
 app.get("/", function (req, res,next) {
     //req (请求) 和 res (响应) 与 Node 提供的对象完全一致
     //res.send("hello express and node");
     console.info("/-first");
+    DBhelper("select * from category",function(result){
+
+        res.send("hj"+result+"jk");
+    })
     next("route");
     //next("route");//与中间件不同，中间件会继续执行后续中间件，但是本router中会中止后续路由句柄的执行，转向下一个router的句柄执行。
 },function (req, res, next) {
@@ -21,7 +26,10 @@ app.use(function (req, res, next) {
 });
 app.get("/", function (req, res) {
     //req (请求) 和 res (响应) 与 Node 提供的对象完全一致
-    res.send("11--hello express and node");
+    DBhelper("select * from category",function(result){
+        console.log(result);
+        res.end("11--hello express and node"+result);
+    })
     console.info(url.parse(req.url));
 });
 app.post('/', function (req, res) {

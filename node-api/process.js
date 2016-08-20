@@ -25,3 +25,5 @@ function gets(cb){
 gets(function(reuslt){
     console.log("["+reuslt+"]");
 });
+
+process.env.NODE_ENV
