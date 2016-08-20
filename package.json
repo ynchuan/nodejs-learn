@@ -17,13 +17,11 @@
   },
   "homepage": "https://github.com/ynchuan/nodejs-learn#readme",
   "devDependencies": {
-<<<<<<< HEAD
-    "gulp": "^3.9.1"
-=======
     "adm-zip": "^0.4.7",
+    "bluebird": "^3.4.1",
+    "gulp": "^3.9.1",
     "mysql": "^2.10.2",
     "socket.io": "^1.4.6"
->>>>>>> 91a2ab595221fab9978132a4918d81de8c844c24
   },
   "dependencies": {
     "express": "^4.13.4",
