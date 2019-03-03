@@ -52,23 +52,30 @@ var fs = require("fs");
 // 	if (err) throw err;
 // 	console.log('It\'s saved!');
 // });
-
-fs.open('content.txt', 'a', function(err, fd) {
-	if (err) {
-		throw err;
-	}
-	var data = '123123123 hello world';
-	fs.write(fd, data, 0, 'utf-8', function(err, written, string) {
-		if (err) {
-			throw err;
-		}
-		console.log(written);
-		console.log(string); 
-		fs.close(fd, function(err) {
-			if (err) {
-				throw err;
-			}
-			console.log('file closed');
-		})
-	})
-})
+fs.appendFile('./data1.txt', 'hello file', { flag: 'w', encoding: 'utf-8', mode: '0666' }, function(err) {
+    // appendFile|writeFile 文件不用自己创建，但是目录需要创建好才能写入数据
+    if (err) {
+        console.log("文件写入失败")
+    } else {
+        console.log("文件写入成功");
+    }
+});
+// fs.open('content.txt', 'a', function(err, fd) {
+//     if (err) {
+//         throw err;
+//     }
+//     var data = '123123123 hello world';
+//     fs.write(fd, data, 0, 'utf-8', function(err, written, string) {
+//         if (err) {
+//             throw err;
+//         }
+//         console.log(written);
+//         console.log(string);
+//         fs.close(fd, function(err) {
+//             if (err) {
+//                 throw err;
+//             }
+//             console.log('file closed');
+//         })
+//     })
+// })

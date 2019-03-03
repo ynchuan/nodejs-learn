@@ -1,0 +1,86 @@
+
+  Usage: gitlab [options]
+
+
+  Options:
+
+    -V, --version  output the version number
+    -o, --option   Get option
+    -h, --help     output usage information
+
+
+  Commands:
+
+    url [url]                                                                                    Get or Set url of your gitlab website. Please make sure your settings are 'http' or 'https'.
+    token [token]                                                                                Get or Set token of gitlab
+    map [map]                                                                                    Get or Set map.json of gitlab
+    groups [options]                                                                             Get retrive groups from gitlab.
+    showGroup <group_id>                                                                         Get retrive group of a given group.
+    showGroupProjects [options] <group_id>                                                       Get retrive projects of a given group.
+    showGroupMembers [options] <group_id>                                                        Get retrive memebers of a given group.
+    addGroupMember <group_id> <user_id> <access_level>                                           Adds a user to the list of group members.
+    createGroup [options]                                                                        Creates a new project group. Available only for users who can create groups.
+    transferProjectToGroup <id> <project_id>                                                     Transfer a project to the Group namespace. Available only for admin.
+    searchGroup <nameOrPath>                                                                     Get all groups that match your string in their name or path.
+    issueNotes [options] <projectId> <issue_id>                                                  List project issue notes. iid seems not work, please try id or iid
+    issues [options]                                                                             Get all issues created by authenticated user. This function takes pagination parameters page and per_page to restrict the list of issues.
+    showIssue <project_id> <issue_id>                                                            Get retrive issue of a given project and a given issue.
+    createIssue [options] <project_id>                                                           Creates a new project issue.If the operation is successful, 200 and the newly created issue is returned. If an error occurs, an error number and a message explaining the reason is returned.
+    editIssue [options] <project_id> <issue_id>                                                  Updates an existing project issue. This function is also used to mark an issue as closed.If the operation is successful, 200 and the updated issue is returned. If an error occurs, an error number and a message explaining the reason is returned.
+    createLabel [options] <project_id>                                                           Creates a new label for the given repository with the given name and color.
+    createNote [options] <project_id> <issue_id>                                                 Creates a new note to a single project issue.
+    keys [options] <project_id>                                                                  Get a list of a project's deploy keys by project id.
+    getKey <project_id> <key_id>                                                                 Get a single key by project id and key id.
+    addKey [options] <project_id>                                                                Creates a new deploy key for a project. If deploy key already exists in another project - it will be joined to project but only if original one was is accessible by same user.
+    hooks <project_id>                                                                           Get retrive hooks of a given project.
+    showHook <project_id> <hook_id>                                                              Get retrive hook of a given project and a give hook.
+    addHook <project_id> <url>                                                                   Add hook by a given porject id and url.
+    updateHook <project_id> <hook_id> <url>                                                      Update hook by a given porject id, a given hook id and url.
+    removeHook <project_id> <hook_id>                                                            Remove hook by a given porject id abd a given hook id.
+    projectIssues [options] <project_id>                                                         Get a list of project issues. This function accepts pagination parameters page and per_page to return the list of project issues.
+    projectLabels [options] <project_id>                                                         Get all labels for a given project.
+    members [options] <project_id>                                                               Get a list of a project's team members.
+    showMember <project_id> <user_id>                                                            Gets a project team member.
+    addMember <project_id> <user_id> [accessLevel]                                               Adds a user to a project team. This is an idempotent method and can be called multiple times with the same parameters. Adding team membership to a user that is already a member does not affect the existing membership.
+    updateMember <project_id> <user_id> [accessLevel]                                            Updates a project team member to a specified access level.
+    removeMember <project_id> <user_id>                                                          Removes a user from a project team.
+    mergeRequests [options] <project_id>                                                         Get all merge requests for this project.
+    showMergeRequest <project_id> <merge_request_id>                                             Shows information about a single merge request.
+    addMergeRequest <project_id> <sourceBranch> <targetBranch> <assignee_id> <title>             Creates a new merge request.
+    updateMergeRequest [options] <project_id> <merge_request_id>                                 Updates an existing merge request. You can change branches, title, or even close the MR.
+    commentMergeRequest <project_id> <merge_request_id> <note>                                   Adds a comment to a merge request.
+    milestones [options] <project_id>                                                            Returns a list of project milestones.
+    showMilestones <project_id> <milestone_id>                                                   Gets a single project milestone.
+    addMilestones <project_id> <title> <description> <due_date>                                  Creates a new project milestone.
+    updateMilestones <project_id> <milestone_id> <title> <description> <due_date> <state_event>  Updates an existing project milestone. The state event of the milestone (close|activate).
+    branches [options] <project_id>                                                              Get a list of repository branches from a project, sorted by name alphabetically.
+    showBranch <project_id> <branch_id>                                                          Get a single project repository branch.
+    protectBranch <project_id> <branch_id>                                                       Protects a single project repository branch. This is an idempotent function, protecting an already protected repository branch still returns a 200 OK status code.
+    unprotectBranch <project_id> <branch_id>                                                     Unprotects a single project repository branch. This is an idempotent function, unprotecting an already unprotected repository branch still returns a 200 OK status code.
+    createBranch [options]                                                                       It return 200 if succeed or 400 if failed with error message explaining reason..
+    deleteBranch <project_id> <branch_id>                                                        It return 200 if succeed, 404 if the branch to be deleted does not exist or 400 for other reasons. In case of an error, an explaining message is provided.
+    tags [options] <project_id>                                                                  Get retrive list tags of a given project.
+    commits [options] <project_id>                                                               Get a list of repository commits in a project.
+    showCommit <project_id> <commit_id>                                                          Get retrive commit of a given project and a commit id.
+    diffCommit <project_id> <sha>                                                                Get the diff of a commit in a project.
+    trees [options] <project_id>                                                                 Get a list of repository files and directories in a project.
+    projects [options]                                                                           Get a list of projects accessible by the authenticated user.
+    showProject <project_id>                                                                     Get single project.
+    createProject [options]                                                                      Creates a new project owned by the authenticated user.
+    createProjectForUser [options]                                                               Creates a new project owned by the specified user. Available only for admins.
+    updateProject [options]                                                                      Update project.
+    projectsAdminOnly [options]                                                                  Get a list of all GitLab projects (admin only).
+    removeProject <projectId>                                                                    Remove project by project id.
+    forkProject <projectId>                                                                      Forks a project into the user namespace of the authenticated user.
+    searchProject [options] <projectName>                                                        Search for projects by name which are accessible to the authenticated user.
+    triggersOfProject [options] <projectId>                                                      Get triggers from project
+    showProjectService <projectId> <serviceName>                                                 Show project Service by project id and service name.
+    removeProjectService <projectId> <serviceName>                                               Remove project Service by project id and service name.
+    userKeys [options] <userId>                                                                  Get user keys by user id.
+    addUserKey <userId> <title> <key>                                                            Add user keys by user id and title and key.
+    users [options]                                                                              Get retrive users from gitlab.
+    me                                                                                           About me.
+    showUser <user_id>                                                                           Show users by user id.
+    createUser [options]                                                                         Creates a new user. Note only administrators can create new users.
+    session <email> <password>                                                                   Get session by email and password.
+    searchUsers [options] <emailOrUsername>                                                      Search user by email or username.
