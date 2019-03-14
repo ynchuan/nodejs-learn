@@ -2,17 +2,25 @@ var http = require('http');
 var server = http.createServer(function (req, res) {
     console.log('2-inner request');
     console.log(req.headers);
-    res.writeHead(200, 'JASK');
-    res.write(Buffer.from('NNN'));
-    res.write(Buffer.from('NNN1'));
-    res.write(Buffer.from('NNN21'));
-    res.write(Buffer.from('NNN321'));
-    res.end('TTTS');
+    res.on('drain', function () {
+        console.log('drain');
+    });
+    // res.writeHead(200, 'JASK');
+    // res.write(Buffer.from('NNN'));
+    // res.write(Buffer.from('NNN1'));
+    // res.write(Buffer.from('NNN21'));
+    // res.write(Buffer.from('NNN321'));
+    // res.end('TTTS');
+    res.writeContinue();
+    res.end();
     console.log('res end');
     console.log(res._header);
 }).on('connection', function (socket) {
     // 建立新的 TCP 流时会触发此事件
     console.log('1-connection');
+    socket.on('data', function (chunk) {
+        console.log('server connection data' + chunk.toString());
+    });
 }).on('request', function (req, res) {
     // 每次有请求时都会触发
     console.log('3-request');
@@ -33,6 +41,7 @@ var server = http.createServer(function (req, res) {
     // 每次客户端请求 HTTP CONNECT 方法时触发
     console.log('connect');
     console.log(head.toString());
+    console.log(req.url.toString());
     // var raw;
     // socket.on('data', function (chuck) {
     //     raw += chuck;
@@ -47,7 +56,15 @@ var server = http.createServer(function (req, res) {
 }).on('upgrade', function (req, socket, head) {
     // 每次客户端请求 HTTP 升级时发出，需要手动监听data
     console.log('upgrade');
+    socket.write('HTTP/1.1 101 Web Socket Protocol Handshake\r\n' +
+        'Upgrade: WebSocket\r\n' +
+        'Connection: Upgrade\r\n' +
+        '\r\n');
+    socket.pipe(socket);
+    socket.on('data', function (chunk) {
+        console.log('server upgrade data:' + chunk.toString());
+    });
 });
 server.listen(9999, function () {
     console.log('listen:9999');
-});
+});;

@@ -1,0 +1,16 @@
+{
+    "errno": 0,
+    "msg": "",
+    "data":
+    {
+        "is_login": true,
+        "acct_info":
+        {
+            "securityQuestion": false,
+            "securityMobile": false,
+            "securityEmail": false,
+            "username": "wangxunxun"
+        },
+        "type": ""
+    }
+}

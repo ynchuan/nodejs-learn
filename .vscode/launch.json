@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "random stream",
+            "program": "${workspaceFolder}/stream/randomNumberStream.js"
+        }, {
+            "type": "node",
+            "request": "launch",
+            "name": "output stream",
+            "program": "${workspaceFolder}/stream/outputStream.js"
+        }, {
+            "type": "node",
+            "request": "launch",
+            "name": "fs file",
+            "program": "${workspaceFolder}/fs/index.js"
+        }
+    ]
+}
