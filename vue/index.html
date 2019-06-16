@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue TEST</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <h3>{{title.name}}</h3>
+            <!-- <p>{{subTitle}}</p>
+            <button @click="tick">点击</button>
+            <div v-for='item in title.name'>
+                <span v-text='item' v-if='item!==" "'></span>
+                <span v-text='item' v-else></span>
+            </div> -->
+        </div>
+        <!-- <process :title='title.name' v-model='content' @comp='comp'>
+            <div>SLOT</div>
+        </process> -->
+    </div>
+    <style>
+        .main {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .comp {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        let count = 0;
+        const instance = new Vue({
+            el: '#app',
+            data: {
+                title: {
+                    name: 'VUE TEST'
+                },
+                content: 'VUE CONTENT'
+            },
+            methods: {
+                tick() {
+                    this.title.name = 'WANG';
+                },
+                comp(val) {
+                    console.log(val);
+                }
+            },
+            computed: {
+                subTitle() {
+                    return this.title.name + ' SUB'
+                }
+            },
+            components: {
+                process: {
+                    props: ['title', 'value'],
+                    data: function() {
+                        return {
+                            comptitle: 'VUE PROCESS TITLE :' + this.title,
+                            compsubtitle: 'COMP:PROCESS SUB TITLE '
+                        }
+                    },
+                    template: `
+                        <div class='comp'>
+                            <h3>{{comptitle}}</h3>
+                            <p>{{compsubtitle}}</p>
+                            <button @click='cTick'>COMP TICK</button>
+                            <slot></slot>
+                            <span>{{value}}</span>
+                        </div>
+                    `,
+                    methods: {
+                        cTick() {
+                            this.comptitle = 'COMP:WANGXUNXUN';
+                        }
+                    }
+                }
+            }
+        });
+        console.log(instance);
+    </script>
+</body>
+
+</html>

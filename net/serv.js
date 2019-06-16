@@ -5,6 +5,8 @@ var server = http.createServer(function (req, res) {
     res.on('drain', function () {
         console.log('drain');
     });
+
+
     // res.writeHead(200, 'JASK');
     // res.write(Buffer.from('NNN'));
     // res.write(Buffer.from('NNN1'));
@@ -15,6 +17,7 @@ var server = http.createServer(function (req, res) {
     res.end();
     console.log('res end');
     console.log(res._header);
+    throw new Error('h哈哈')
 }).on('connection', function (socket) {
     // 建立新的 TCP 流时会触发此事件
     console.log('1-connection');
@@ -68,3 +71,7 @@ var server = http.createServer(function (req, res) {
 server.listen(9999, function () {
     console.log('listen:9999');
 });;
+process.on('uncaughtException', function (err) {
+    console.log('900');
+    console.error('Error caught in uncaughtException event:', err);
+});

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue COMPUTE START</title>
+    <script src="./vue-2.5.17.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <h3>{{title.name}}</h3>
+            <button @click="tick">点击</button>
+        </div>
+    </div>
+    <style>
+        .main {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        
+        .comp {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        let count = 0;
+        const instance = new Vue({
+            el: '#app',
+            data: {
+                title: {
+                    name: 'VUE COMPUTE'
+                }
+            },
+            methods: {
+                tick() {
+                    this.title.name = 'WANG';
+                },
+            },
+        });
+        console.log(instance);
+    </script>
+</body>
+
+</html>

@@ -28,7 +28,7 @@
  * 示例 3:
  *
  * 输入: 120
- * 输出: 21
+ * 输出: 021
  *
  *
  * 注意:
@@ -42,6 +42,29 @@
  * @return {number}
  */
 var reverse = function (x) {
-    console.log(Math.pow(2, 31));
+    var h = x;
+    var nums = [];
+    var rst = 0;
+    if (h > 0) {
+        while (h > 0) {
+            nums.push(h % 10);
+            h = Math.floor(h / 10);
+        }
+    }
+    else {
+        while (h < 0) {
+            nums.push(h % 10);
+            h = Math.ceil(h / 10);
+        }
+    }
+
+    var len = nums.length;
+    if (len) {
+        for (var i = 0; i < len; i++) {
+            rst += nums[i] * Math.pow(10, len - i - 1);
+        }
+    }
+    console.log(rst);
+    return rst;
 };
-reverse()
+reverse(-32190);

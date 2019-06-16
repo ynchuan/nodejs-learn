@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue TEST SIMPLE</title>
+    <script src="./vue-2.5.17.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <h3>{{title.name}}</h3>
+            <h4>{{title.name}}</h4>
+            <button @click="tick">点击</button>
+        </div>
+    </div>
+    <style>
+        .main {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        
+        .comp {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        let count = 0;
+        const instance = new Vue({
+            el: '#app',
+            data: {
+                title: {
+                    name: 'VUE TEST'
+                }
+            },
+            demoRdr: function() {
+                with(this) {
+                    return _c('div', {
+                        attrs: {
+                            "id": "app"
+                        }
+                    }, [_c('div', {
+                        staticClass: "main"
+                    }, [_c('h3', [
+                            _v(_s(title.name))
+                        ]),
+                        _v(" "),
+                        _c('button', {
+                            on: {
+                                "click": tick
+                            }
+                        }, [
+                            _v("点击")
+                        ])
+                    ])]);
+                }
+            },
+            methods: {
+                tick() {
+                    this.title.name = 'WANG';
+                },
+            },
+            computed: {
+                subTitle() {
+                    alert();
+                    return this.title.name + ' SUB'
+                }
+            },
+        });
+        console.log(instance);
+    </script>
+</body>
+
+</html>

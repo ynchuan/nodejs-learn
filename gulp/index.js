@@ -1,12 +1,12 @@
 var fs = require("fs");
 var through = require("through2");
-
-fs.createReadStream("./in.txt")
+var path = require("path");
+var input = path.resolve(__dirname, './data');
+var ouput = path.resolve(__dirname, './data.json');
+fs.createReadStream(input)
     .pipe(through.obj(function (contents, enc, done) {
-        if (enc === "buffer") {
-            contents = contents.toString("utf-8");
-            enc = "utf-8";
-        }
+        contents = contents.toString("utf-8");
+        enc = "utf-8";
         done(null, contents, enc);
     }))
     .pipe(through.obj(function (contents, enc, done) {
@@ -16,4 +16,4 @@ fs.createReadStream("./in.txt")
         contents = contents.split("").reverse().join("");
         done(null, contents, enc);
     }))
-    .pipe(fs.createWriteStream("./out.txt"));
+    .pipe(fs.createWriteStream(ouput));

@@ -34,7 +34,8 @@ class Pipe {
 }
 
 const fs = require('fs');
-const input = fs.createReadStream('./data/amuse.json');
-const output = fs.createWriteStream('./data/amuse2.json');
+const path = require('path');
+const input = fs.createReadStream(path.resolve(__dirname, './data/amuse.json'));
+const output = fs.createWriteStream(path.resolve(__dirname, './data/amuse2.json'));
 const pipe = new Pipe(input, output);
 pipe.start();

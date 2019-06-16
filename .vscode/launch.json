@@ -7,6 +7,11 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "promise",
+            "program": "${workspaceFolder}/algo/promise.js"
+        }, {
+            "type": "node",
+            "request": "launch",
             "name": "random stream",
             "program": "${workspaceFolder}/stream/randomNumberStream.js"
         }, {
@@ -17,8 +22,33 @@
         }, {
             "type": "node",
             "request": "launch",
+            "name": "pipe stream",
+            "program": "${workspaceFolder}/stream/pipe.js"
+        }, {
+            "type": "node",
+            "request": "launch",
             "name": "fs file",
             "program": "${workspaceFolder}/fs/index.js"
+        }, {
+            "type": "node",
+            "request": "launch",
+            "name": "gulp",
+            "program": "${workspaceFolder}/gulp/index.js"
+        }, {
+            "type": "node",
+            "request": "launch",
+            "name": "buffer",
+            "program": "${workspaceFolder}/buffer/index.js"
+        }, {
+            "type": "node",
+            "request": "launch",
+            "name": "repl",
+            "program": "${workspaceFolder}/repl/index.js"
+        }, {
+            "type": "node",
+            "request": "launch",
+            "name": "readline",
+            "program": "${workspaceFolder}/readline/file.js"
         }
     ]
 }
